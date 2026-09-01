@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Technobabble Generator</title>
+    <style></style>
+    <script>
+        "use strict";
+
+    const words1 = ["Acute", "Aft", "Anti-matter", "Bipolar", "Cargo", "Command", "Communication", "Computer", "Deuterium", "Dorsal", "Emergency", "Engineering", "Environmental", "Flight", "Fore", "Guidance", "Heat", "Impulse", "Increased", "Inertial", "Infinite", "Ionizing", "Isolinear", "Lateral", "Linear", "Matter", "Medical", "Navigational", "Optical", "Optimal", "Optional", "Personal", "Personnel", "Phased", "Reduced", "Science", "Ship's", "Shuttlecraft", "Structural", "Subspace", "Transporter", "Ventral"];
+	
+	const words2 = ["Propulsion", "Dissipation", "Sensor", "Improbability", "Buffer", "Graviton", "Replicator", "Matter", "Anti-matter", "Organic", "Power", "Silicon", "Holographic", "Transient", "Integrity", "Plasma", "Fusion", "Control", "Access", "Auto", "Destruct", "Isolinear", "Transwarp", "Energy", "Medical", "Environmental", "Coil", "Impulse", "Warp", "Phaser", "Operating", "Photon", "Deflector", "Integrity", "Control", "Bridge", "Dampening", "Display", "Beam", "Quantum", "Baseline", "Input"];
+	
+	const words3 = ["Chamber", "Interface", "Coil", "Polymer", "Biosphere", "Platform", "Thruster", "Deflector", "Replicator", "Tricorder", "Operation", "Array", "Matrix", "Grid", "Sensor", "Mode", "Panel", "Storage", "Conduit", "Pod", "Hatch", "Regulator", "Display", "Inverter", "Spectrum", "Generator", "Cloud", "Field", "Terminal", "Module", "Procedure", "System", "Diagnostic", "Device", "Beam", "Probe", "Bank", "Tie-In", "Facility", "Bay", "Indicator", "Cell"];
+
+	console.log(words1[0]);
+
+    // Technobabble Part I
+
+    // #1 Getting a random variable from the array
+    function getRandomWord(array) {
+        // Get random array + word
+        return array[Math.floor(Math.random() * array.length)];
+    };
+
+    // Get a random word from array 1
+    let word1 = getRandomWord(words1);
+
+    // #2 String the words together to get a truly random word
+    let randomWord = getRandomWord(words1) + getRandomWord(words2) + getRandomWord (words3);
+
+    // #3 Update paragraph elements with code 
+    // (#5 must use event handler since script is before html)
+    // *note: you don't have to use an event handler, there are other methods
+
+    document.addEventListener("DOMContentLoaded", ()=> {
+        let textbox = document.querySelector('#output');
+        textbox.innerHTML = randomWord;
+
+    // #4 Get button to call code when clicked
+        const button = document.querySelector('#myButton');
+        button.onclick = function() {
+            randomWord = getRandomWord(words1) + getRandomWord(words2) + getRandomWord (words3);
+            textbox.innerHTML = randomWord;
+        }
+    });
+
+    
+</script>
+</head>
+<body>
+<p id="output">Loading...</p>
+<button id="myButton">More Technobabble!</button>
+	
+</body>
+</html>
+
+<!--------------------------------------------------------------->
+<!-- Review Questions Part 1-->
+
+<!--
+    ?#1. What are the 3 distinct layers of a (simple) web browser app?
+        *Structure, Presentation, and Javascript
+    ?#2. What are the 3 languages used to program these layers?
+        *HTML (structure), CSS (presentation), Javascript (behavior)
+    ?#3. List 3 things that "use strict", does? (see the link in V. Reference below)
+        *'use strict' Allows users to write secure code. Bad syntax becomes real errors.
+        *In strict mode you:
+            *1. Cannot use undeclared variables.
+            *2. Have error feedback that you would not have in normal javascript.
+            *3. Cannot delete variables, objects, functions or undeletable properties.
+            *4. Cannot duplicate parameter names.
+            *5. Write to read-only/get-only properties.
+            *6. Cannot use keywords (such as eval, arguments, or with) as a variable.
+            *7. Changes the definition of the 'this' keyword in functions to refer to
+            *the object that called the function rather than the function itself.
+            *8. Use Octal numeric literals or escape characters (010, \010).
+        
+        *Note 'use strict' is only recognized at the beginning of a script/function
+    ?#4. Note that we declared the words1, words2, and words3 arrays with const -
+    ?can elements be added and/or deleted from these arrays using JavaScript?
+        * You can modify the items in an array but cannot reassign the definition of the
+        *variable. 
+        
+        *In essence you cannot do words1 = ['orange', 'banana', 'pear']; but you 
+        *can do words1.push('orange'), words1.splice(1, 3), or words1.unshift(0)
+    ?#5. Give an example of following the software development D.R.Y. principle.
+        *D.R.Y refers to the "Don't Repeat Yourself". An example of following this principle
+        *would be implementing a function to avoid the code that randomizes an object
+        *when a button is clicked numerous times.
+    ?#6. Within JavaScript template literals, what goes inside the $()?
+        *JavaScript template literals are variables, strings, numbers, or booleans that
+        *can be inserted inside of a console.log or string.
+
+        *EX: const name = Elena
+        *   console.log(`Hello, ${name}`); => "Hello Elena"
+    ?#7. Which symbol does a CSS id selector always start with?
+        *They always start with a # (hashtag or pound symbol)
+    ?#9. What does an event handler (ex. myButton.onclick=) 'point' at?
+        *Event handlers point at a correlated function when a user action is performed.
+        *myButton.onclick= points at a function which runs when the button is clicked.
+    ?#10. What do the first two arguments of .addEventListener() represent?
+        *The first argument represents the type of event and the second argument
+        *represents the function to run when the event occurs.
+-->
+<!--------------------------------------------------------------->
