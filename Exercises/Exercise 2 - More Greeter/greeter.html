@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeter</title>
+    <style>
+        #hello, #goodbye{
+            width: 150px;
+            height: 50px;
+            font-size: 14pt;
+        }
+
+        #output {
+            font-size: 14pt;
+        }
+
+        #first-name, #last-name {
+            height: 50px;
+            width: 300px;
+            font-size: 14pt;
+        }
+    </style>
+        <script>
+        // #0. Declare variables.
+
+        // Default first name
+        let defaultFirst = "Peter";
+        // Default last name
+        let defaultLast = "Parker"
+
+        let firstname; // user first name
+        let lastname; // user last name
+
+         document.addEventListener("DOMContentLoaded", ()=> {
+            // #1. Get a reference to the button
+            const sayHello = document.querySelector('#hello'); // Hello button
+            const sayGoodbye = document.querySelector('#goodbye'); // Goodbye button
+            
+            // Get reference to HTML
+            const output = document.querySelector('#output'); // Output printed
+            const firstBox = document.querySelector('#first-name'); // first name input
+            const lastBox = document.querySelector('#last-name'); // last name input
+
+            // #3. Implement "greet" function.
+
+            //An output that greets a user and says goodbye.
+            let greet = function(greeting) {
+
+            // Check for valid input
+                if (firstBox.value) {
+                    firstName = firstBox.value; // if valid set
+                }
+                else {
+                    firstName = defaultFirst; // if invalid use default
+                }
+                if (lastBox.value) {
+                    lastName = lastBox.value; // same premise here
+                }
+                else {
+                    lastName = defaultLast;
+                }
+            
+            // set html
+            output.innerHTML = `${greeting} ${firstName} ${lastName}`;
+            }
+
+            // #2. Add a click event to button that calls a function.
+            sayHello.onclick = () => greet("Hello");
+            sayGoodbye.onclick = () => greet("Goodbye");
+         });
+
+    </script>
+</head>
+<body>
+    <button id = "hello">Say Hello</button>
+    <button id = "goodbye">Say Goodbye</button>
+    <br><br>
+    <input type="text" id="first-name" placeholder="Type your first name...">
+    <input type="text" id="last-name" placeholder="Type your last name...">
+
+    <p id = "output"></p>
+</body>
+</html>
