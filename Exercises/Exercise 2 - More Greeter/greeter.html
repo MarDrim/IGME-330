@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeter</title>
-    <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+        <style>
+        
+        .google-sans{
+        font-family: "Google Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-variation-settings:
+            "GRAD" 0;
+        }
+        
         #hello, #goodbye{
             width: 150px;
             height: 50px;
@@ -13,6 +26,8 @@
 
         #output {
             font-size: 14pt;
+            width: 20rem;
+            font-family: "Google Sans";
         }
 
         #first-name, #last-name {
@@ -20,52 +35,70 @@
             width: 300px;
             font-size: 14pt;
         }
+
+        @media only screen and (min-width: 1024px) {
+            body {
+                background-color: red;
+                padding: 100px;
+            }
+        }
     </style>
         <script>
-        // #0. Declare variables.
+        // Declare variables
 
-        // Default first name
-        let defaultFirst = "Peter";
-        // Default last name
-        let defaultLast = "Parker"
+        let defaultFirst = "Peter"; // Default first name
+        let defaultLast = "Parker" // Default last name
 
         let firstname; // user first name
         let lastname; // user last name
 
-         document.addEventListener("DOMContentLoaded", ()=> {
-            // #1. Get a reference to the button
+        // Add event listener to see if page loaded.
+         window.addEventListener("DOMContentLoaded", ()=> {
+            //Get a reference to the button
             const sayHello = document.querySelector('#hello'); // Hello button
             const sayGoodbye = document.querySelector('#goodbye'); // Goodbye button
-            
+
             // Get reference to HTML
             const output = document.querySelector('#output'); // Output printed
             const firstBox = document.querySelector('#first-name'); // first name input
             const lastBox = document.querySelector('#last-name'); // last name input
+            const shoutify = document.querySelector('#shoutify'); // checkbox
 
-            // #3. Implement "greet" function.
+            //Implement "greet" function.
 
             //An output that greets a user and says goodbye.
             let greet = function(greeting) {
 
             // Check for valid input
                 if (firstBox.value) {
-                    firstName = firstBox.value; // if valid set
+                    firstName = firstBox.value.trim(); // if valid set
                 }
                 else {
                     firstName = defaultFirst; // if invalid use default
                 }
                 if (lastBox.value) {
-                    lastName = lastBox.value; // same premise here
+                    lastName = lastBox.value.trim(); // same premise here
                 }
                 else {
                     lastName = defaultLast;
                 }
+
+                // Check if checkbox is checked. (What a sentence)
+                if(shoutify.checked){
+                    greeting = greeting.toUpperCase();
+                    firstName = firstName.toUpperCase();
+                    lastName = lastName.toUpperCase();
+                }
             
-            // set html
+            // Set output to username
             output.innerHTML = `${greeting} ${firstName} ${lastName}`;
             }
+            
+            // Part of req
+            output.style.color = "red";
+            output.style.backgroundColor = "yellow";
 
-            // #2. Add a click event to button that calls a function.
+            // Add a click event to button that calls a function.
             sayHello.onclick = () => greet("Hello");
             sayGoodbye.onclick = () => greet("Goodbye");
          });
@@ -75,10 +108,11 @@
 <body>
     <button id = "hello">Say Hello</button>
     <button id = "goodbye">Say Goodbye</button>
+    <input type="checkbox" id ="shoutify" placeholder = "Enable Shoutify?">
+    <label for="shoutify">Enable Shoutify?</label>
     <br><br>
     <input type="text" id="first-name" placeholder="Type your first name...">
     <input type="text" id="last-name" placeholder="Type your last name...">
-
     <p id = "output"></p>
 </body>
 </html>
