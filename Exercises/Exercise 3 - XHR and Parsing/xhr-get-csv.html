@@ -17,26 +17,34 @@
 
         // Implement XHR function.
         function loadTextXHR() {
-            const url = "data/pet-names.txt";
+            const url = "data/pet-names.csv";
             const xhr = new XMLHttpRequest();
             xhr.onload = (e) => {
                 console.log(`In onload - HTTP Status Code = ${e.target.status}`);
                 const text = e.target.responseText;
                 console.log(`Success - the file length is ${text.length}`);
-                const words = text.split(",");
+                
+                const lines = text.split("\n");
+                const dogNames = lines[0].split(",");
+                const catNames = lines[1].split(",");
+                const birdNames = lines[2].split(",");
 
-                // Long Way
+                const dogHtml = `<ol>${dogNames.map(w=> `<li>${w}</li>`).join("")}</ol>`;
+                const catHtml = `<ol>${catNames.map(w=> `<li>${w}</li>`).join("")}</ol>`;
+                const birdHtml = `<ol>${birdNames.map(w=>`<li>${w}</li>`).join("")}</ol>`;
 
-                // let html = "<ol>";
-                // for (let w of words) {
-                //     html += `<li>${w}</li>`
-                // }
-                // html += "</ol>";
-                // document.querySelector("#output").innterHTML = html;
+                const html = `
+                    <h3>Dog Names</h3>
+                    ${dogHtml}
 
-                // Short Way
-                const html = words.map(w=> `<li>${w}</li>`).join("");
-                document.querySelector("#output").innerHTML = `<ol>${html}</ol>`;
+                    <h3>Cat Names</h3>
+                    ${catHtml}
+
+                    <h3>Bird Names</h3>
+                    ${birdHtml}
+                `;
+
+                document.querySelector("#output").innerHTML = html;
             };
             xhr.onerror = e => console.log(`In onerror - HTTP Status Code = ${e.target.status}`);
             xhr.open("GET", url);
