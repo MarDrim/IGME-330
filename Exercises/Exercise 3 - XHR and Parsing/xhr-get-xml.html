@@ -28,7 +28,7 @@
                 }
                 const dogNames = xml.querySelector("namelist[cid='dognames']").textContent.split(",");
                 const catNames = xml.querySelector("namelist[cid='catnames']").textContent.split(",");
-                const birdNames = xml.querySelector("namelist[cid='bsirdnames']").textContent.split(",");
+                const birdNames = xml.querySelector("namelist[cid='birdnames']").textContent.split(",");
 
                 const dogHtml = `<ol>${dogNames.map(w=> `<li>${w}</li>`).join("")}</ol>`;
                 const catHtml = `<ol>${catNames.map(w=> `<li>${w}</li>`).join("")}</ol>`;
