@@ -6,6 +6,10 @@
         font-style: normal;
         }
 
+        #moreBabble {
+            display: none;
+        }
+
         /*#2.A Mobile CSS Breakpoint*/
         @media only screen and (min-width: 320px){
             .container {
@@ -83,7 +87,11 @@
                 background-color: rgb(118, 30, 212);
             }
 
-            #myButton {
+            #more-babble {
+                display: inline;
+            }
+
+            #my-button, #more-babble {
                 width: 600px;
                 height: 100pt;
                 font-size: 3rem;
