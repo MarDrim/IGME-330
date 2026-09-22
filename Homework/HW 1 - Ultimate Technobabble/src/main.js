@@ -41,7 +41,7 @@
         moreBabble.onclick = () => generateTechno(5);
 
         // display initial babble
-        let randomWord = randomElement(words1) + randomElement(words2) + randomElement (words3);
+        let randomWord = `${randomElement(words1)}${randomElement(words2)}${randomElement(words3)}`;
         
         babbleInit(randomWord);
     }
@@ -62,7 +62,7 @@
             textbox.innerHTML = "";
 
             for (let i = 0; i < num; i++) {
-                let randomWord = randomElement(words1) + randomElement(words2) + randomElement(words3);
+                let randomWord = `${randomElement(words1)}${randomElement(words2)}${randomElement(words3)}`;
                 textbox.innerHTML = `${textbox.innerHTML} <br> ${randomWord}`;
             }
     }
