@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>Screensaver</title>
-	<style>
-	canvas{
-		border:1px solid gray;
-	}
-
-	body{
-		font-family: sans-serif;
-	}
-		
-	button{
-		font-size:1.2em;
-	}
-		
-	section{
-		margin:.5em 0 .5em 0;
-	}
-	</style>
-	<script>
-		// #0 - in this class we will always use ECMAScript 5's "strict" mode
+// #0 - in this class we will always use ECMAScript 5's "strict" mode
 		// See what 'use strict' does here:
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
 		"use strict";
-		
-		// #1 call the `init` function after the pages loads
-		window.onload = init;
 
         let ctx;
 		let arcEnabled;
@@ -42,7 +16,10 @@
 
 		let isPlaying = true;
 	
-		function init() {
+        import { getRandomColor, getRandomInt } from "./utils.js";
+        import { drawRectangle, drawArc, drawLine } from "./canvas-utils.js";
+
+		let init = () => {
 			console.log("page loaded!");
 			// #2 Now that the page has loaded, start drawing!
 			
@@ -95,7 +72,10 @@
             update();
 		}
 
-        function update() {
+        // #1 call the `init` function after the pages loads
+		window.onload = init;
+
+        let update = () => {
             requestAnimationFrame(update);
 
 			// Check if playing
@@ -156,21 +136,8 @@
 			canvas.onclick = canvasClicked;
 		}
 
-		// gets a random rgba value
-        let getRandomColor = () => {
-            let getByte = () => {
-                return 55 + Math.round(Math.random() * 200);
-            }
-            return `rgba(${getByte()},${getByte()},${getByte()},.8)`;
-        }
-
-		// gets a random int value
-        let getRandomInt = (min, max) => {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
 		// tells you if canvas was clicked
-		function canvasClicked(e) {
+		let canvasClicked = (e) => {
 			let rect = e.target.getBoundingClientRect();
 			let mouseX = e.clientX - rect.x;
 			let mouseY = e.clientY - rect.y;
@@ -186,71 +153,4 @@
 		}
 
 		// draws a rectangle
-		let drawRectangle = (ctx,x,y,width,height,fillStyle="black",lineWidth=0,strokeStyle="black") => {
-           	ctx.save();
-
-			ctx.fillStyle = fillStyle;
-            ctx.lineWidth = lineWidth;
-            ctx.beginPath();
-            ctx.rect(x, y, width, height);
-            ctx.closePath();
-            ctx.fill();
-
-			ctx.restore();
-		}
-
-		// draws an arc
-		let drawArc = (ctx, x, y, radius, fillStyle="black", lineWidth=0, strokeStyle="white", startAngle = 0, endAngle = Math.PI*2) => {
-			ctx.save();
-			
-			ctx.fillStyle = fillStyle;
-			ctx.lineWidth = lineWidth;
-			ctx.strokeStyle = strokeStyle;
-
-			ctx.beginPath();
-			ctx.arc(x, y, radius, startAngle, endAngle);
-			ctx.fill();
-			ctx.stroke();
-	
-			ctx.restore();
-		}
-
-		// draws a line
-		let drawLine = (ctx, x1, y1 ,x2, y2, strokeStyle = "black", lineWidth = 1,) => {
-			ctx.save();
-			
-			ctx.lineWidth = lineWidth;
-			ctx.strokeStyle = strokeStyle;
-
-			ctx.beginPath();
-			ctx.moveTo(x1, y1);
-			ctx.lineTo(x2, y2);
-			ctx.stroke();
-
-			ctx.restore();
-		}
-	</script>
-</head>
-<body>
-	<canvas width="640" height="480">
-		Get a real browser!
-	</canvas><br>
-	<span>
-		<button id = "play">Play</button>
-		<button id = "pause">Pause</button>
-		<button id = "clear">Clear Screen</button>
-	</span><br><br>
-
-	<span>
-		<input type="checkbox" id ="rect" placeholder = "Rectangles">
-		<label for="rect">Rectangles</label>
-
-		<input type="checkbox" id ="arc" placeholder = "Arcs">
-		<label for="arc">Arcs</label>
-
-		<input type="checkbox" id ="line" placeholder = "Lines">
-		<label for="line">Lines</label>
-	</span>
-	<p>Click on the screen to "spraypaint" rectangles (you probably want the screensaver to be paused).</p>
-</body>
-</html>
+		
