@@ -11,11 +11,8 @@
     let n = 0;
     let c = 4;
     let divergence = 137.5;
-    const radius = 2;
+    let radius = 2;
     const fps = 60;
-
-    let controls = document.querySelector("#controls");
-    
 
 	let init = () =>{
 		ctx = canvas.getContext("2d");
@@ -23,6 +20,26 @@
 		canvas.height = canvasHeight;
 		ctx.fillRect(0,0,canvasWidth,canvasHeight);
         loop();
+        
+        // Get UI
+        let controls = document.querySelector("#controls");
+        let restart = document.querySelector("#btn-restart");
+
+        // Set clear canvas for restart button
+        restart.onclick = () => {
+            n = 0;
+            c = 4;
+            divergence = 137.5;
+            radius = 2;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        }
+
+        controls.onchange = (e) => {
+            divergence = Number(e.target.value) // change string value to number
+        }
 	}
 
     window.onload = init;
@@ -51,11 +68,11 @@
 
         // let color = `hsl(${n/5 % 361},100%,50%)`;
 
-        drawCircle(ctx,x,y,2, color);
+        drawCircle(ctx,x,y,radius,color);
         n++;
         c += 0.01;
         divergence += 0.001;
-
+        radius+= 0.01;
     }
 
 	// helpers
