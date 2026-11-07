@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Audio Visualizer</title>
+    <link href="./styles/default-styles.css" type="text/css" rel="stylesheet" />
+    <script src="./src/loader.js" type="module"></script>
+</head>
+
+<body>
+    <main>
+        <div id="controls">
+            <button id="micButton">Start Microphone</button>
+            <button id="stopButton" disabled>Stop Microphone</button>
+            <button id="fsButton">Full Screen</button>
+        </div>
+            <section id = "display">
+            <!--add span so H2 does not get overwritten by update-->
+            <h2 >Detected Note: <span id="noteDisplay">---</span></h2>
+            <h2>Frequency: <span id="frequencyDisplay">---</span></h2>
+            </section>
+
+        <canvas width="800" height="400"></canvas>
+    </main>
+</body>
+</html>
