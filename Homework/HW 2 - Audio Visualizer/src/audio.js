@@ -25,7 +25,6 @@ let setupWebaudio = () => {
 
     // Create analyser
     analyserNode = audioCtx.createAnalyser();
-
     analyserNode.fftSize = DEFAULTS.fftSize;
 
     // Create array for frequency data
@@ -69,17 +68,13 @@ let stopMicrophone = () => {
 
 // Get frequency data
 let getFrequencyData = () => {
-
     analyserNode.getFloatFrequencyData(audioData);
-
     return audioData;
 }
 
 // Get waveform data
 let getWaveformData = () => {
-
     analyserNode.getByteTimeDomainData(waveformData);
-
     return waveformData;
 }
 

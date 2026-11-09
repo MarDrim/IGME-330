@@ -1,0 +1,2 @@
+!function(){"use strict";var e=function(e,t,n){var c=t||"Mr. X",o="".concat(e," ").concat(c);return n?"".concat(o.toUpperCase(),"!"):o},t=document.querySelector("#input-firstname"),n=document.querySelector("#output"),c=document.querySelector("#cb-forcefully"),o=document.querySelector("#btn-hello"),r=document.querySelector("#btn-goodbye"),u=c.checked;c.onchange=function(e){return u=e.target.checked},o.onclick=function(){return n.innerHTML=e("Hello",t.value.trim(),u)},r.onclick=function(){return n.innerHTML=e("Goodbye",t.value.trim(),u)}}();
+//# sourceMappingURL=bundle.js.map

@@ -162,13 +162,12 @@ let draw = (currentNote, micActive, waveformData) => {
 
         // Draw note
         ctx.fillText(notes[i].name, 0, 0);
-
         ctx.restore();
 
         // Move upward
         notes[i].y -= notes[i].speed;
 
-        // Fade away
+        // Fade 
         notes[i].opacity -= 0.005;
     }
 

@@ -35,6 +35,7 @@ let setupUI = (canvasElement) => {
     const micButton = document.querySelector("#micButton");
     const stopButton = document.querySelector("#stopButton");
 
+    // start button
     micButton.onclick = async () => {
         try {
             await audio.startMicrophone();
@@ -50,6 +51,7 @@ let setupUI = (canvasElement) => {
         }
     };
 
+    // stop button 
     stopButton.onclick = () => {
 
         audio.stopMicrophone();
